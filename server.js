@@ -14,7 +14,7 @@ const url = process.env.MONGODB_URI;
 
 mongoose.connect(url);
 mongoose.connection.once("open", async () => {
-  console.log("Connected to database successfully");
+  // console.log("Connected to database successfully");
 });
 
 const server = new ApolloServer({
@@ -28,7 +28,7 @@ const server = new ApolloServer({
       let bearer = parts[0];
       let token = parts[1];
       if (bearer == "Bearer") {
-       
+
         const user = getUser(token);
         if (user.error) {
           throw Error(user.msg);
@@ -46,4 +46,7 @@ const app = express();
 
 server.applyMiddleware({ app });
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log("App listening on PORT:", PORT));
+app.listen(PORT, () => {
+  // console.log("App listening on PORT:", PORT)
+}
+);
